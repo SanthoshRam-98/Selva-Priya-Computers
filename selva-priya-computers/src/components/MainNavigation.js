@@ -8,7 +8,16 @@ function MainNavigation() {
             <Link to="/">HomePage</Link>
           </li>
           <li>
-            <Link to="/services">ServicesPage</Link>
+            <Link to="/services">Services</Link>
+          </li>
+          <li>
+            <Link to="/pricing">Pricing</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
           </li>
         </ul>
       </nav>
