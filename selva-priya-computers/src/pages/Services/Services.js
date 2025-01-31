@@ -109,7 +109,7 @@ const GridContainer = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 250px;
+  height: 476px;
   overflow: hidden;
 
   img {
