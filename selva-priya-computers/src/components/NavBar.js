@@ -1,85 +1,29 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-export const NavigationBar = ({ onQuoteClick, isDisabled }) => {
-  return (
-    <NavContainer>
-      <NavWrapper>
-        <LogoWrapper>
-          <CompanyName>Selvapriya</CompanyName>
-          <CompanyType>Computers</CompanyType>
-        </LogoWrapper>
-        <NavControls>
-          <MenuWrapper role="navigation" aria-label="Main navigation">
-            {menuItems.map((item, index) => (
-              <StyledLink to={item.link} key={index} $isDisabled={isDisabled}>
-                <MenuItem
-                  $isActive={item.isActive}
-                  tabIndex={isDisabled ? -1 : 0}
-                >
-                  {item.label}
-                </MenuItem>
-              </StyledLink>
-            ))}
-          </MenuWrapper>
-          <ButtonWrapper>
-            <StyledButton role="button" tabIndex={0} onClick={onQuoteClick}>
-              {isDisabled ? "Close" : "Get a Quote"}
-            </StyledButton>
-          </ButtonWrapper>
-        </NavControls>
-      </NavWrapper>
-    </NavContainer>
-  );
-};
-
-const menuItems = [
-  { label: "HOME", link: "/", isActive: true },
-  { label: "SERVICES", link: "/services", isActive: false },
-  { label: "PRICING", link: "/pricing", isActive: false },
-  { label: "ABOUT", link: "/about", isActive: false },
-  { label: "CONTACT", link: "/contact", isActive: false },
-];
-
-const NavContainer = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: white;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-`;
-
-const NavWrapper = styled.nav`
+import { FiMenu, FiX } from "react-icons/fi";
+import QuotationForm from "../pages/QuotationForm"; // Import the form component
+// Styled Components
+const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
-`;
-
-const NavControls = styled.div`
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  @media (max-width: 991px) {
-    flex-direction: column;
-    gap: 15px;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  @media (max-width: 991px) {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
+  align-items: center;
+  padding: 15px 20px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky; /* ✅ Makes the navbar sticky */
+  top: 0; /* ✅ Sticks to the top */
+  z-index: 1001; /* ✅ Ensures it stays above other content */
 `;
 
 const LogoWrapper = styled.div`
   color: rgba(30, 30, 30, 1);
   font-weight: 500;
-  text-align: right;
+  text-align: left;
+
   @media (max-width: 991px) {
     text-align: center;
+    margin-bottom: 20px;
   }
 `;
 
@@ -96,48 +40,145 @@ const CompanyType = styled.span`
   display: block;
 `;
 
-const MenuWrapper = styled.div`
+const Menu = styled.ul`
   display: flex;
-  gap: 11px;
-  color: rgba(30, 30, 30, 1);
-  flex-wrap: wrap;
-  flex-grow: 1;
-  flex-basis: auto;
-  @media (max-width: 991px) {
+  align-items: center;
+  list-style: none;
+
+  @media (max-width: 768px) {
+    display: ${({ open }) => (open ? "flex" : "none")};
+    align-items: stretch;
     flex-direction: column;
-    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above other content */
+    padding: 20px 0;
+  }
+`;
+
+const MenuItem = styled.li`
+  margin: 0 15px;
+
+  @media (max-width: 768px) {
+    padding: 10px 0;
+    text-align: center;
   }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  pointer-events: ${({ $isDisabled }) => ($isDisabled ? "none" : "auto")};
-  opacity: ${({ $isDisabled }) => ($isDisabled ? 0.5 : 1)};
-`;
+  font-size: 18px;
+  color: ${({ active }) => (active ? "pink" : "black")};
+  font-weight: ${({ active }) => (active ? "bold" : "normal")};
 
-const MenuItem = styled.div`
-  min-height: 52px;
-  gap: 8px;
-  padding: 17px 24px;
-  color: ${(props) =>
-    props.$isActive ? "rgba(255, 170, 170, 1)" : "rgba(30, 30, 30, 1)"};
-  font-weight: ${(props) => (props.$isActive ? "700" : "400")};
-  cursor: pointer;
   &:hover {
-    color: rgba(255, 170, 170, 1);
-  }
-  @media (max-width: 991px) {
-    padding: 10px 20px;
+    color: pink;
   }
 `;
 
-const StyledButton = styled.button`
-  background-color: #ffaaaa;
+const MenuIcon = styled.div`
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+// Get a Quote Button
+const QuoteButton = styled(Link)`
+  background-color: pink;
   color: white;
-  padding: 15px 25px;
-  cursor: pointer;
-  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents text from wrapping */
+  display: inline-block;
+  text-align: center;
+  margin-left: auto; /* Ensures it stays aligned */
+
   &:hover {
-    opacity: 0.9;
+    background-color: rgba(255, 182, 193, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+    text-align: center;
   }
 `;
+
+// React Component
+const NavigationBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false); // ✅ State for Quote Form
+  const location = useLocation();
+
+  return (
+    <Nav>
+      <LogoWrapper>
+        <CompanyName>Selvapriya</CompanyName>
+        <CompanyType>Computers</CompanyType>
+      </LogoWrapper>
+
+      <MenuIcon onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <FiX /> : <FiMenu />}
+      </MenuIcon>
+
+      <Menu open={menuOpen}>
+        <MenuItem>
+          <StyledLink to="/" active={location.pathname === "/" ? 1 : 0}>
+            HOME
+          </StyledLink>
+        </MenuItem>
+        <MenuItem>
+          <StyledLink
+            to="/services"
+            active={location.pathname === "/services" ? 1 : 0}
+          >
+            SERVICES
+          </StyledLink>
+        </MenuItem>
+        <MenuItem>
+          <StyledLink
+            to="/pricing"
+            active={location.pathname === "/pricing" ? 1 : 0}
+          >
+            PRICING
+          </StyledLink>
+        </MenuItem>
+        <MenuItem>
+          <StyledLink
+            to="/about"
+            active={location.pathname === "/about" ? 1 : 0}
+          >
+            ABOUT
+          </StyledLink>
+        </MenuItem>
+        <MenuItem>
+          <StyledLink
+            to="/contact"
+            active={location.pathname === "/contact" ? 1 : 0}
+          >
+            CONTACT
+          </StyledLink>
+        </MenuItem>
+        <MenuItem>
+          <QuoteButton onClick={() => setIsQuoteOpen(true)}>
+            Get a Quote
+          </QuoteButton>
+        </MenuItem>
+        <QuotationForm
+          isOpen={isQuoteOpen}
+          onClose={() => setIsQuoteOpen(false)}
+        />
+      </Menu>
+    </Nav>
+  );
+};
+
+export default NavigationBar;

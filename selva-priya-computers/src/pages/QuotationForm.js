@@ -51,20 +51,13 @@ const QuotationForm = ({ isOpen, onClose }) => {
   return (
     <FormOverlay $isOpen={isOpen} onClick={handleOverlayClick}>
       <FormContainer onClick={(e) => e.stopPropagation()}>
-        <CloseButton
-          onClick={() => {
-            resetForm();
-            onClose();
-          }}
-        >
-          &times;
-        </CloseButton>
+        <CloseButton onClick={onClose}>&times;</CloseButton>
         <Title>Get a Quotation</Title>
         <Subtitle>Tell us about your project or just say hello!</Subtitle>
         <InputRow>
           <Input
             type="text"
-            placeholder="Enter your First Name*"
+            placeholder="First Name*"
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
@@ -72,7 +65,7 @@ const QuotationForm = ({ isOpen, onClose }) => {
           />
           <Input
             type="text"
-            placeholder="Enter your Last Name*"
+            placeholder="Last Name*"
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
@@ -82,7 +75,7 @@ const QuotationForm = ({ isOpen, onClose }) => {
         <InputRow>
           <Input
             type="email"
-            placeholder="Enter your Email*"
+            placeholder="Email*"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
@@ -90,7 +83,7 @@ const QuotationForm = ({ isOpen, onClose }) => {
           />
           <Input
             type="tel"
-            placeholder="Enter your WhatsApp Number*"
+            placeholder="WhatsApp Number*"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
@@ -106,7 +99,7 @@ const QuotationForm = ({ isOpen, onClose }) => {
         <FileUploadBox>
           <UploadText>Insert your file</UploadText>
           <AllowedTypes>
-            Allowed documents (.jpg, .jpeg, .doc, .docx, .pdf, .png, .gif)
+            Allowed formats: .jpg, .jpeg, .doc, .docx, .pdf, .png, .gif
           </AllowedTypes>
           <UploadArea onClick={triggerFileUpload}>
             <input
@@ -150,21 +143,18 @@ const FormOverlay = styled.div`
 
 const FormContainer = styled.div`
   background: white;
-  padding: 30px;
-  width: 50%;
-  max-width: 600px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  @media (max-width: 768px) {
-    width: 90%;
-    padding: 20px;
-  }
+  border-radius: 8px;
 `;
 
 const CloseButton = styled.button`
   align-self: flex-end;
-  font-size: 32px;
+  font-size: 28px;
   background: none;
   border: none;
   cursor: pointer;
@@ -172,18 +162,12 @@ const CloseButton = styled.button`
 
 const Title = styled.h2`
   text-align: center;
-  font: 700 32px Philosopher, Regular;
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
+  font-size: 24px;
 `;
 
 const Subtitle = styled.p`
   text-align: center;
-  font: 400 18px Philosopher, Regular;
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
+  font-size: 16px;
 `;
 
 const InputRow = styled.div`
@@ -197,44 +181,39 @@ const InputRow = styled.div`
 
 const Input = styled.input`
   flex: 1;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
-  font: 400 18px Philosopher, Regular;
   width: 100%;
 `;
 
 const MessageBox = styled.textarea`
   width: 100%;
   height: 80px;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
   margin-bottom: 15px;
-  font: 400 18px Philosopher, Regular;
 `;
 
 const FileUploadBox = styled.div`
   background: #e0f0ff;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   margin-bottom: 15px;
-  font: 400 18px Philosopher, Regular;
 `;
 
 const UploadText = styled.h3`
-  margin-bottom: 5px;
-  font: 400 18px Philosopher, Regular;
+  font-size: 16px;
 `;
 
 const AllowedTypes = styled.p`
   font-size: 12px;
   color: #555;
   margin-bottom: 10px;
-  font: 400 16px Philosopher, Regular;
 `;
 
 const UploadArea = styled.div`
   border: 2px dashed #ccc;
-  padding: 20px;
+  padding: 15px;
   cursor: pointer;
 `;
 
@@ -245,16 +224,14 @@ const UploadIcon = styled.div`
 const UploadButton = styled.button`
   background: #ffaaaa;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
   cursor: pointer;
-  margin-top: 10px;
-  font: 400 18px Philosopher, Regular;
+  margin-top: 8px;
 `;
 
 const DropText = styled.p`
   font-size: 12px;
-  font: 400 16px Philosopher, Regular;
 `;
 
 const SubmitButton = styled.button`
@@ -262,11 +239,7 @@ const SubmitButton = styled.button`
   margin: auto;
   background: #ffaaaa;
   color: white;
-  padding: 12px;
+  padding: 10px;
   border: none;
   cursor: pointer;
-  font: 400 18px Philosopher, Regular;
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
 `;

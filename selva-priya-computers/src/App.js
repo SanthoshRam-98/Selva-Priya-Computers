@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NavigationBar } from "./components/NavBar";
+import NavigationBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import styled from "styled-components";
 import HomePage from "./pages/HomePage/HomePage";
@@ -77,6 +77,7 @@ function App() {
             />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            {/* <Route path="/quote" element={<QuotationForm />} /> */}
           </Routes>
         </MainContent>
         <Footer />
@@ -85,17 +86,8 @@ function App() {
   );
 }
 
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
+const AppContainer = styled.div``;
 
-const MainContent = styled.main`
-  flex: 1;
-  padding: 20px;
-  transition: filter 0.3s ease;
-  filter: ${({ $isBlurred }) => ($isBlurred ? "blur(5px)" : "none")};
-`;
+const MainContent = styled.main``;
 
 export default App;

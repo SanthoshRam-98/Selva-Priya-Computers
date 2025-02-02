@@ -64,7 +64,13 @@ const MainContainer = styled.main`
   align-items: center;
   padding: 60px 20px;
   font-family: "Philosopher", Regular;
-  background-color: #f9fafc;
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 10px;
+  }
 `;
 
 const ContactContainer = styled.div`
@@ -75,16 +81,36 @@ const ContactContainer = styled.div`
   align-items: center;
   text-align: center;
   color: rgb(30, 30, 30);
-  font: 400 20px "Philosopher", Regular;
+  font-family: "Philosopher", Regular;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const HeaderWrapper = styled.header`
   margin-bottom: 40px;
+
+  @media (max-width: 480px) {
+    margin-bottom: 30px;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 32px;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `;
 
 const MainHeading = styled.h2`
@@ -92,8 +118,14 @@ const MainHeading = styled.h2`
   font-weight: 700;
   margin: 36px 0;
 
-  @media (max-width: 991px) {
-    font-size: 40px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+    margin: 24px 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin: 16px 0;
   }
 `;
 
@@ -101,8 +133,14 @@ const SubHeading = styled.p`
   font-size: 20px;
   margin: 36px 0 0;
 
-  @media (max-width: 991px) {
+  @media (max-width: 768px) {
     font-size: 18px;
+    margin: 24px 0 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin: 16px 0 0;
   }
 `;
 
@@ -111,18 +149,35 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
+  }
 `;
 
 const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 `;
 
 const InfoLabel = styled.h3`
   font-size: 24px;
   font-weight: 700;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const InfoValue = styled.p`
@@ -130,8 +185,12 @@ const InfoValue = styled.p`
   font-weight: 400;
   margin: 8px 0 0;
 
-  @media (max-width: 991px) {
+  @media (max-width: 768px) {
     font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
   }
 `;
 

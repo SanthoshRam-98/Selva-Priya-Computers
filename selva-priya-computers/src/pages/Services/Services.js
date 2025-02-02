@@ -147,7 +147,6 @@ const Overlay = styled.div`
 
 const ViewMore = styled.span`
   font-size: 18px;
-  font-weight: bold;
   text-transform: uppercase;
 `;
 

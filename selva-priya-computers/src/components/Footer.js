@@ -1,210 +1,218 @@
 import React from "react";
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
 import {
   FaWhatsapp,
   FaFacebookF,
   FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+  FaXTwitter,
+} from "react-icons/fa6";
+
 const Footer = () => {
+  const location = useLocation();
   return (
-    <FooterWrapper>
-      <FooterContainer>
-        {/* Left Section */}
-        <ContainerSection>
-          <LeftSection>
-            <Heading>Let's keep in touch!</Heading>
-            <Description>
-              Find us on any of these platforms, we respond in 1-2 business
-              days.
-            </Description>
-            <SocialIcons>
-              <SocialIcon
-                href="https://wa.me"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaWhatsapp />
-              </SocialIcon>
-              <SocialIcon
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebookF />
-              </SocialIcon>
-              <SocialIcon
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram />
-              </SocialIcon>
-              <SocialIcon
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter />
-              </SocialIcon>
-            </SocialIcons>
-          </LeftSection>
-
-          {/* Middle Section */}
-          <MiddleSection>
-            <SubHeading>USEFUL LINKS</SubHeading>
-            <LinkList>
-              <LinkItem>
-                <FooterLink href="/">Home</FooterLink>
-              </LinkItem>
-              <LinkItem>
-                <FooterLink href="/services">Services</FooterLink>
-              </LinkItem>
-              <LinkItem>
-                <FooterLink href="/pricing">Pricing</FooterLink>
-              </LinkItem>
-              <LinkItem>
-                <FooterLink href="/about">About</FooterLink>
-              </LinkItem>
-            </LinkList>
-          </MiddleSection>
-
-          {/* Right Section */}
-          <RightSection>
-            <SubHeading>OTHER RESOURCES</SubHeading>
-            <LinkList>
-              <LinkItem>
-                <FooterLink href="/terms">Terms & Conditions</FooterLink>
-              </LinkItem>
-              <LinkItem>
-                <FooterLink href="/privacy">Privacy Policy</FooterLink>
-              </LinkItem>
-              <LinkItem>
-                <FooterLink href="/contact">Contact Us</FooterLink>
-              </LinkItem>
-            </LinkList>
-          </RightSection>
-        </ContainerSection>
-        <Divider />
-      </FooterContainer>
-
-      <Copyright>
-        Copyright © {new Date().getFullYear()} by Selvapriya Computers.
-      </Copyright>
-    </FooterWrapper>
+    <FooterContainer>
+      <TopSection>
+        <ContactInfo>
+          <Title>Let's keep in touch!</Title>
+          <Subtitle>
+            Find us on any of these platforms, we respond 1-2 business days.
+          </Subtitle>
+          <SocialIcons>
+            <SocialLink href="#" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp />
+            </SocialLink>
+            <SocialLink href="#" target="_blank" rel="noopener noreferrer">
+              <FaFacebookF />
+            </SocialLink>
+            <SocialLink href="#" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </SocialLink>
+            <SocialLink href="#" target="_blank" rel="noopener noreferrer">
+              <FaXTwitter />
+            </SocialLink>
+          </SocialIcons>
+        </ContactInfo>
+        <LinksContainer>
+          <LinksGroup>
+            <LinksTitle>USEFULL LINKS</LinksTitle>
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/services">Services</StyledLink>
+            <StyledLink to="/pricing">Pricing</StyledLink>
+            <StyledLink to="/about">About</StyledLink>
+          </LinksGroup>
+          <LinksGroup>
+            <LinksTitle>OTHER RESOURCES</LinksTitle>
+            <StyledLink to="/terms">Terms & Conditions</StyledLink>
+            <StyledLink to="/privacy">Privacy Policy</StyledLink>
+            <StyledLink to="/contact">Contact Us</StyledLink>
+          </LinksGroup>
+        </LinksContainer>
+      </TopSection>
+      <BottomSection>
+        <Copyright>
+          Copyright © {new Date().getFullYear()} by Selvapriya Computers.
+        </Copyright>
+      </BottomSection>
+    </FooterContainer>
   );
 };
 
 export default Footer;
 
-// Styled Components
-const FooterWrapper = styled.footer`
-  background-color: #1e1e1e;
-  color: white;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  flex-shrink: 0; /* Prevent shrinking */
-`;
+const FooterContainer = styled.footer`
+  background: #111;
+  color: #fff;
+  padding: 40px 20px; /* Ensure padding is not too large */
+  font-family: "Philosopher", Regular;
+  overflow: hidden; /* Prevent content overflow */
 
-const FooterContainer = styled.div`
-  max-width: 1240px;
-  width: 100%;
-  @media (max-width: 991px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  @media (max-width: 330px) {
+    padding: 20px 10px; /* Adjust padding for narrow viewports */
   }
 `;
-const ContainerSection = styled.div`
+const TopSection = styled.div`
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px; /* Reduce gap for narrow screens */
+  max-width: 100%; /* Ensure no overflow */
+  margin: 0 auto;
+
+  @media (max-width: 330px) {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align elements */
+    gap: 15px;
+  }
 `;
-const LeftSection = styled.div`
+
+const ContactInfo = styled.div`
   flex: 1;
+  min-width: 300px;
 `;
 
-const MiddleSection = styled.div``;
+const Title = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+  max-width: 100%; /* Ensures it doesn't overflow */
+  text-align: left; /* Default alignment */
 
-const RightSection = styled.div``;
-
-const Heading = styled.h2`
-  font-size: 32px;
-  font-family: "Philosopher", regular;
+  @media (max-width: 330px) {
+    font-size: 16px; /* Reduce size for very small screens */
+    text-align: center; /* Center align */
+  }
 `;
 
-const SubHeading = styled.h3`
-  font-size: 20px;
-  font-family: "Philosopher", regular;
-`;
+const Subtitle = styled.p`
+  font-size: 14px;
+  color: #bbb;
+  max-width: 100%;
+  line-height: 1.4;
+  text-align: left;
 
-const Description = styled.p`
-  font-size: 16px;
-  color: #939393;
-  margin: 20px 0;
+  @media (max-width: 330px) {
+    font-size: 12px; /* Reduce size */
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 `;
 
 const SocialIcons = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px; /* Reduce spacing */
+  margin-top: 10px;
+  justify-content: center; /* Center align icons for narrow screens */
 
-  @media (max-width: 991px) {
-    justify-content: center;
+  @media (max-width: 330px) {
+    gap: 8px;
   }
 `;
 
-const SocialIcon = styled.a`
+const SocialLink = styled.a`
+  background: #fff;
+  color: #111;
+  width: 40px;
+  height: 40px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 50px; /* Circle size */
-  height: 50px; /* Circle size */
-  border-radius: 50%; /* Makes it circular */
-  background-color: white;
-  color: black; /* Default icon color */
-  font-size: 24px; /* Icon size */
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 18px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 0 2px transparent; /* Initial transparent outline */
 
   &:hover {
-    background-color: #1e1e1e; /* Keep the background white on hover */
-    color: white;
+    background-color: #1e1e1e;
+    color: #fff;
     box-shadow: 0 0 0 2px white; /* Add a white circular outline */
   }
-`;
-
-const LinkList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-const LinkItem = styled.li`
-  margin: 12px 0;
-`;
-
-const FooterLink = styled.a`
-  color: #939393;
-  text-decoration: none;
-  font-family: "Philosopher", regular;
-  &:hover {
-    color: white;
+  @media (max-width: 330px) {
+    width: 30px;
+    height: 30px;
   }
 `;
 
-const Divider = styled.hr`
-  margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #939393;
-  width: 100%;
+const LinksContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  min-width: 300px;
+
+  @media (max-width: 330px) {
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px; /* Reduce spacing */
+    align-items: center;
+    width: 100%; /* Avoid overflow */
+  }
+`;
+
+const LinksGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center for small screens */
+  text-align: center; /* Center text alignment */
+
+  @media (max-width: 330px) {
+    width: 100%; /* Ensure it adjusts within the viewport */
+  }
+`;
+
+const LinksTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  @media (max-width: 330px) {
+    font-size: 12px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: #bbb;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 5px;
+
+  &:hover {
+  }
+  @media (max-width: 330px) {
+    font-size: 10px;
+  }
+`;
+
+const BottomSection = styled.div`
+  border-top: 1px solid #333;
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
 `;
 
 const Copyright = styled.p`
-  font-size: 16px;
-  color: #939393;
+  font-size: 14px;
+  color: #bbb;
   text-align: center;
-  font-family: "Philosopher", regular;
+
+  @media (max-width: 330px) {
+    font-size: 12px; /* Adjust font size */
+    word-wrap: break-word; /* Prevent text overflow */
+    padding: 0 5px; /* Add padding to prevent cut-off */
+  }
 `;

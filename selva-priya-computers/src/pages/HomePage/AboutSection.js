@@ -1,131 +1,89 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
-
-export function AboutSection() {
-  const aboutData = {
-    subtitle: "About Us",
-    title: "Precision, Quality, and Legacy",
-    description:
-      "Founded in 1984, SelvaPriya Computers has built a legacy of quality, trust, and service in the printing industry. With a commitment to continually evolve, we combine expertise with modern design to bring you the best in printing solutions. We believe in putting quality first-always.",
-    buttonText: "Know More",
-  };
-
-  return (
-    <AboutContainer role="region" aria-label="About Us Section">
-      <AboutWrapper>
-        <ContentContainer>
-          <AboutHeading subtitle={aboutData.subtitle} title={aboutData.title} />
-          <AboutContent description={aboutData.description} />
-          <ButtonWrapper>
-            <StyledButton role="button" tabIndex={0}>
-              Know More
-            </StyledButton>
-          </ButtonWrapper>
-        </ContentContainer>
-      </AboutWrapper>
-    </AboutContainer>
-  );
-}
+import { Link } from "react-router-dom";
 
 const AboutContainer = styled.section`
   display: flex;
   flex-direction: column;
-  font-family: Philosopher, regular;
-  color: rgb(30, 30, 30);
-  font-weight: 400;
-  margin-bottom: 80px;
-`;
-
-const AboutWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgb(30, 30, 30);
-
-  @media (max-width: 991px) {
-    padding: 100px 20px;
+  text-align: center;
+  padding: 50px 200px;
+  background: #fff;
+  border: 2px solid black;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 80px;
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+    max-width: 90%;
   }
 `;
 
-const ContentContainer = styled.div`
-  display: flex;
-  width: 100%;
-  max-width: 1012px;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-bottom: 10px;
+const Heading = styled.h2`
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
   }
 `;
 
-const AboutHeading = ({ subtitle, title }) => (
-  <>
-    <Subtitle>{subtitle}</Subtitle>
-    <Title>{title}</Title>
-  </>
-);
-
-const Subtitle = styled.h2`
+const SubHeading = styled.h1`
   font-size: 32px;
-  text-align: center;
-`;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 20px;
 
-const Title = styled.h1`
-  font-size: 48px;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 36px;
-
-  @media (max-width: 991px) {
-    font-size: 40px;
+  @media (max-width: 768px) {
+    font-size: 28px;
   }
 `;
 
-const AboutContent = ({ description }) => (
-  <Description>{description}</Description>
-);
+const Text = styled.p`
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 750px;
+  margin-bottom: 20px;
 
-const Description = styled.p`
-  font-size: 20px;
-  text-align: center;
-  align-self: stretch;
-  margin-top: 36px;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 0 10px;
   }
 `;
 
-const ButtonWrapper = styled.div`
-  @media (max-width: 991px) {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-`;
-
-const StyledButton = styled.div`
-  align-self: stretch;
-  background-color: rgba(255, 170, 170, 1);
-  gap: 10px;
-  overflow: hidden;
-  color: rgba(255, 255, 255, 1);
-  padding: 17px 24px;
+const KnowMoreButton = styled(Link)`
+  background: pink;
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
   cursor: pointer;
-  text-align: center;
+
   &:hover {
-    opacity: 0.9;
-  }
-  &:focus {
-    outline: 2px solid rgba(255, 170, 170, 0.5);
-    outline-offset: 2px;
-  }
-  @media (max-width: 991px) {
-    padding: 15px 30px;
-    width: 100%;
+    background: rgba(255, 182, 193, 0.8);
   }
 `;
+
+const AboutSection = () => {
+  return (
+    <AboutContainer>
+      <Heading>About Us</Heading>
+      <SubHeading>Precision, Quality, and Legacy</SubHeading>
+      <Text>
+        Founded in 1984, SelvaPriya Computers has built a legacy of quality,
+        trust, and service in the printing industry. With a commitment to
+        continually evolve, we combine expertise with modern design to bring you
+        the best in printing solutions. We believe in putting quality first –
+        always.
+      </Text>
+      <KnowMoreButton to="/about">Know More</KnowMoreButton>
+    </AboutContainer>
+  );
+};
+
+export default AboutSection;
