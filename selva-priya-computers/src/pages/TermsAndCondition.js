@@ -132,7 +132,6 @@ export default function TermsAndConditions() {
 }
 
 const MainContainer = styled.main`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,7 +145,6 @@ const MainContainer = styled.main`
 const HeaderSection = styled.section`
   background-color: rgba(207, 230, 242, 1);
   display: flex;
-  width: 100%;
   max-width: 1239px;
   flex-direction: column;
   align-items: center;
@@ -161,7 +159,6 @@ const HeaderSection = styled.section`
 
 const HeaderContainer = styled.div`
   max-width: 1025px;
-  width: 100%;
   position: relative;
 `;
 
@@ -189,7 +186,6 @@ const Description = styled.p`
 
 const BannerWrapper = styled.div`
   position: relative;
-  width: 100%;
   height: 800px; /* Adjust height */
   overflow: hidden; /* Prevents extra spacing */
   margin-top: -180px; /* Moves it up to overlap HeaderSection */
@@ -208,7 +204,6 @@ const BannerImage = styled.img`
 const ContentContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 100%;
   margin-top: 40px; /* Adjust based on spacing */
   padding: 0 20px;
   @media (max-width: 991px) {

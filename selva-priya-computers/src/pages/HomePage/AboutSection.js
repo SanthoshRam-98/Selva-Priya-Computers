@@ -8,15 +8,26 @@ const AboutContainer = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 50px 200px;
+  padding: 50px 15%;
   background: #fff;
   border: 2px solid black;
   max-width: 900px;
   margin: auto;
   margin-bottom: 80px;
+
+  @media (max-width: 1024px) {
+    padding: 40px 10%;
+    max-width: 85%;
+  }
+
   @media (max-width: 768px) {
-    padding: 40px 15px;
-    max-width: 90%;
+    padding: 40px 5%;
+    max-width: 95%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 5%;
+    max-width: 100%;
   }
 `;
 
@@ -27,6 +38,10 @@ const Heading = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
   }
 `;
 
@@ -39,6 +54,10 @@ const SubHeading = styled.h1`
   @media (max-width: 768px) {
     font-size: 28px;
   }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `;
 
 const Text = styled.p`
@@ -50,7 +69,13 @@ const Text = styled.p`
 
   @media (max-width: 768px) {
     font-size: 14px;
-    padding: 0 10px;
+    padding: 0 5%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0 3%;
   }
 `;
 
@@ -63,9 +88,21 @@ const KnowMoreButton = styled(Link)`
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background: rgba(255, 182, 193, 0.8);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    padding: 8px 16px;
   }
 `;
 

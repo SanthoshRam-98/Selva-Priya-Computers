@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Contact from "./HomePage/ContactSection";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -52,33 +53,7 @@ export default function ContactPage() {
   return (
     <ContactWrapper>
       <ContentContainer>
-        <HeaderSection>
-          <Title>Contact Us</Title>
-          <MainHeading>Get in Touch with SelvaPriya Computers</MainHeading>
-          <SubHeading>
-            Have questions, or ready to start your next project? Reach out to us
-            today!
-          </SubHeading>
-        </HeaderSection>
-
-        <InfoSection>
-          <ContactDetail>
-            <Label>Email</Label>
-            <Value>Selvapriyacomputer@gmail.com</Value>
-          </ContactDetail>
-          <ContactDetail>
-            <Label>Phone</Label>
-            <Value>+91 - 96559 26967</Value>
-          </ContactDetail>
-          <ContactDetail>
-            <Label>Address</Label>
-            <Value>
-              30th, Karmega Nadar Street, VRD 18, Milk depo near Thalavaipuram,
-              Chettiyarpatti, Virudhunagar District - 626122
-            </Value>
-          </ContactDetail>
-        </InfoSection>
-
+        <Contact />
         <MapSection>
           <MapContainer
             center={[9.5853, 77.9568]} // Coordinates for the address
